@@ -123,13 +123,13 @@ class vLLMRollout(BaseRollout):
 
         do_sample = prompts.meta_info.get("do_sample", True)
         if not do_sample:
-            kwargs = {
+            kwargs.update({
                 "n": 1,
                 "temperature": 0.0,
                 "top_p": 1.0,
                 "top_k": -1,
                 "min_p": 0.0,
-            }
+            })
 
         non_tensor_batch = prompts.non_tensor_batch
         if batch_size != len(non_tensor_batch["raw_prompt_ids"]):
